@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Kalculator</string>
+  </property>
+  <property name="toolTip">
+   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="inputBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>181</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::StrongFocus</enum>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="divideButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>220</y>
+      <width>86</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::TabFocus</enum>
+    </property>
+    <property name="text">
+     <string>/</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="substractButton">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>220</y>
+      <width>86</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::TabFocus</enum>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>86</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::TabFocus</enum>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="multiplicateButton">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>220</y>
+      <width>86</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::TabFocus</enum>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="resultBox">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>181</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::NoFocus</enum>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Result&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::InputMethodHint::ImhNone</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
