@@ -17,7 +17,13 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        resources.qrc
 )
+
+if(WIN32)
+    # Dodajemy plik .rc tylko jeśli jesteśmy na Windowsie
+    list(APPEND PROJECT_SOURCES logo.rc)
+endif()
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(kalculator
@@ -25,6 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         strcalc.h strcalc.cpp
         resources.qrc
+        logo.rc
 
     )
 # Define target properties for Android with Qt 6 as:
