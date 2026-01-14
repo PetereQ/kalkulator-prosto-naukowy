@@ -28,6 +28,30 @@ private slots:
 
     void on_divideButton_clicked();
 
+    void on_sinButton_clicked();
+
+    void on_cosButton_clicked();
+
+    void on_tanButton_clicked();
+
+    void on_logButton_clicked();
+
+    void on_lnButton_clicked();
+
+    void on_sqrtButton_clicked();
+
+    void on_squareButton_clicked();
+
+    void on_powerButton_clicked();
+
+    void on_rootButton_clicked();
+
+    void on_percentButton_clicked();
+
+    void on_binButton_clicked();
+
+    void on_clearButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
