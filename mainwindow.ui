@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Kalkulator prosto-naukowy</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/new/prefix1/logo.ico</normaloff>:/new/prefix1/logo.ico</iconset>
+  </property>
   <property name="toolTip">
    <string/>
   </property>
@@ -67,9 +71,9 @@ QPushButton#runButton {
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>60</y>
+      <y>100</y>
       <width>761</width>
-      <height>26</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -86,9 +90,9 @@ QPushButton#runButton {
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>100</y>
+      <y>50</y>
       <width>761</width>
-      <height>26</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -253,6 +257,8 @@ QPushButton#runButton {
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
