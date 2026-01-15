@@ -34,6 +34,8 @@ private slots:
 
     void on_tanButton_clicked();
 
+    void on_ctgButton_clicked();
+
     void on_logButton_clicked();
 
     void on_lnButton_clicked();
@@ -51,6 +53,32 @@ private slots:
     void on_binButton_clicked();
 
     void on_clearButton_clicked();
+
+    void on_zeroButton_clicked();
+
+    void on_oneButton_clicked();
+
+    void on_twoButton_clicked();
+
+    void on_threeButton_clicked();
+
+    void on_fourButton_clicked();
+
+    void on_fiveButton_clicked();
+
+    void on_sixButton_clicked();
+
+    void on_sevenButton_clicked();
+
+    void on_eightButton_clicked();
+
+    void on_nineButton_clicked();
+
+    void on_commaButton_clicked();
+
+    void on_equalsButton_clicked();
+
+    void on_deleteButton_clicked();
 
 private:
     Ui::MainWindow *ui;

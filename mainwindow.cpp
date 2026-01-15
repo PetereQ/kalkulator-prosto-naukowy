@@ -1,12 +1,30 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "strcalc.h"
+#include <QShortcut>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->inputBox->setReadOnly(true);
+
+    // Obsługa kropki (.) jako drugiego skrótu dla przecinka
+    QShortcut *dotShortcut = new QShortcut(QKeySequence("."), this);
+    connect(dotShortcut, &QShortcut::activated, ui->commaButton, &QPushButton::animateClick);
+
+    // Obsługa entera z klawiatury numerycznej jako drugiego skrótu dla =
+    QShortcut *returnShortcut = new QShortcut(QKeySequence(Qt::Key_Return), this);
+    connect(returnShortcut, &QShortcut::activated, ui->equalsButton, &QPushButton::animateClick);
+
+    // Obsługa entera z klawiatury numerycznej jako drugiego skrótu dla =
+    QShortcut *enterShortcut = new QShortcut(QKeySequence(Qt::Key_Enter), this);
+    connect(enterShortcut, &QShortcut::activated, ui->equalsButton, &QPushButton::animateClick);
+
+    // Obsługa backspace z klawiatur jako drugiego skrótu dla delete
+    QShortcut *backspaceShortcut = new QShortcut(QKeySequence(Qt::Key_Backspace), this);
+    connect(backspaceShortcut, &QShortcut::activated, ui->deleteButton, &QPushButton::animateClick);
 }
 
 MainWindow::~MainWindow()
@@ -59,6 +77,11 @@ void MainWindow::on_cosButton_clicked()
 void MainWindow::on_tanButton_clicked()
 {
     ui->inputBox->insert("tan(");
+}
+
+void MainWindow::on_ctgButton_clicked()
+{
+    ui->inputBox->insert("ctg(");
 }
 
 void MainWindow::on_logButton_clicked()
@@ -120,4 +143,47 @@ void MainWindow::on_clearButton_clicked()
 {
     ui->inputBox->clear();
     ui->resultBox->clear();
+}
+
+// --- CYFERKI ---
+
+void MainWindow::on_zeroButton_clicked() { ui->inputBox->insert("0"); }
+void MainWindow::on_oneButton_clicked() { ui->inputBox->insert("1"); }
+void MainWindow::on_twoButton_clicked() { ui->inputBox->insert("2"); }
+void MainWindow::on_threeButton_clicked() { ui->inputBox->insert("3"); }
+void MainWindow::on_fourButton_clicked() { ui->inputBox->insert("4"); }
+void MainWindow::on_fiveButton_clicked() { ui->inputBox->insert("5"); }
+void MainWindow::on_sixButton_clicked() { ui->inputBox->insert("6"); }
+void MainWindow::on_sevenButton_clicked() { ui->inputBox->insert("7"); }
+void MainWindow::on_eightButton_clicked() { ui->inputBox->insert("8"); }
+void MainWindow::on_nineButton_clicked() { ui->inputBox->insert("9"); }
+
+
+void MainWindow::on_commaButton_clicked()
+{
+    ui->inputBox->insert(".");
+}
+
+void MainWindow::on_equalsButton_clicked()
+{
+    // 1. Pobierz to co wpisał użytkownik
+    QString input = ui->inputBox->text();
+
+    // 2. Oblicz wynik używając naszej funkcji z strcalc.cpp
+    QString result = calculate(input);
+
+    // 3. Wyświetl wynik w dolnym okienku
+    ui->resultBox->setText(result);
+}
+
+void MainWindow::on_deleteButton_clicked()
+{
+    // 1. Pobierz tekst
+    QString text = ui->inputBox->text();
+
+    // 2. Jeśli tekst nie jest pusty, utnij ostatni znak
+    if (!text.isEmpty()) {
+        text.chop(1);
+        ui->inputBox->setText(text);
+    }
 }
