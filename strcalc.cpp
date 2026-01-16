@@ -1,6 +1,6 @@
 #include "strcalc.h"
 
 QString calculate(const QString &input) {
-    QString result = "Test";
+    QString result = "67";
     return result;
 }

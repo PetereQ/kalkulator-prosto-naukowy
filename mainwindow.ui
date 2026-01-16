@@ -334,6 +334,18 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         <property name="shortcut">
          <string>Del</string>
         </property>
+        <property name="autoRepeat">
+         <bool>true</bool>
+        </property>
+        <property name="autoRepeatDelay">
+         <number>200</number>
+        </property>
+        <property name="autoRepeatInterval">
+         <number>35</number>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="3" column="1">
@@ -983,7 +995,7 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
