@@ -166,14 +166,8 @@ void MainWindow::on_commaButton_clicked()
 
 void MainWindow::on_equalsButton_clicked()
 {
-    // 1. Pobierz to co wpisał użytkownik
-    QString input = ui->inputBox->text();
-
-    // 2. Oblicz wynik używając naszej funkcji z strcalc.cpp
-    QString result = calculate(input);
-
-    // 3. Wyświetl wynik w dolnym okienku
-    ui->resultBox->setText(result);
+    //ustaw wynik jako wejście
+    ui->inputBox->setText(ui->resultBox->text());
 }
 
 void MainWindow::on_deleteButton_clicked()
