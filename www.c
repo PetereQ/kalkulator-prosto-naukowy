@@ -288,26 +288,5 @@ int validate_and_eval(const char* expr,double* result){
     *result=parse_expr();
     if(current.type!=TOK_END) error=ERR_SYNTAX;
     return error==ERR_NONE;
-}
+} 
 
-int main(){
-    const char* tests[]={
-        "2+3*4",
-        "sqrt(16)+2",
-        "root(3,27)",
-        "2^3^2",
-        "-2^2",
-        "10/(5-5)",
-        "sqrt(-4)",
-        "root(2,-9)",
-        "sin(30)+cos(60)",
-        NULL
-    };
-
-    for(int i=0;tests[i];i++){
-        double result;
-        printf("Test: %s\n",tests[i]);
-        if(validate_and_eval(tests[i],&result)) printf("  OK = %f\n\n",result);
-        else printf("  Blad (kod %d)\n\n",error);
-    }
-}
