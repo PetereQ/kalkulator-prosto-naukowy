@@ -80,6 +80,17 @@ private slots:
 
     void on_deleteButton_clicked();
 
+    void on_close_brac_clicked();
+
+    void on_open_brac_clicked();
+
+    // Custom Functions:
+
+    void on_func_1_clicked();
+
+    void on_func_2_clicked();
+
+
 private:
     Ui::MainWindow *ui;
 };

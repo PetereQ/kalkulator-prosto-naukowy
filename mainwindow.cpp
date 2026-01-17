@@ -112,12 +112,33 @@ void MainWindow::on_powerButton_clicked()
 void MainWindow::on_rootButton_clicked()
 {
     // to nie wiem jak zrobić aby dobrze wygladalo i dzialalo
-    ui->inputBox->insert("pierwsiatek stopnia a z b?");
+    ui->inputBox->insert("pierwsiatek stopnia a z b?"); // moze a√b?, bo jakby bylo a razy √b to by bylo a*√b, wiec sie nie pomyli
 }
 
 void MainWindow::on_percentButton_clicked()
 {
     ui->inputBox->insert("%");
+}
+
+void MainWindow::on_open_brac_clicked()
+{
+    ui->inputBox->insert("(");
+}
+
+void MainWindow::on_close_brac_clicked()
+{
+    ui->inputBox->insert(")");
+}
+
+
+void MainWindow::on_func_1_clicked()
+{
+    ui->inputBox->insert("fun1(");
+}
+
+void MainWindow::on_func_2_clicked()
+{
+    ui->inputBox->insert("fun2(");
 }
 
 void MainWindow::on_binButton_clicked()
