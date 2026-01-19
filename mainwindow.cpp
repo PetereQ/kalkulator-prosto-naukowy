@@ -141,6 +141,11 @@ void MainWindow::on_func_2_clicked()
     ui->inputBox->insert("fun2(");
 }
 
+void MainWindow::on_func_3_clicked()
+{
+    ui->inputBox->insert("fun3(");
+}
+
 void MainWindow::on_binButton_clicked()
 {
     // 1. Pobierz tekst z pola wpisywania

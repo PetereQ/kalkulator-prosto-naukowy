@@ -90,6 +90,8 @@ private slots:
 
     void on_func_2_clicked();
 
+    void on_func_3_clicked();
+
 
 private:
     Ui::MainWindow *ui;
