@@ -26,7 +26,7 @@ Wykonaj instrukcję dla swojego systemu:
 
 ### 🐧 Linux (Terminal)
 
-Pobierz kod z GitHuba (np. używając git clone), a następnie upewnij się, że masz zainstalowane biblioteki Qt6 i CMake.
+Pobierz kod z GitHuba (np. używając `git clone`), a następnie upewnij się, że masz zainstalowane biblioteki Qt6 i CMake.
 
 `sudo apt install qt6-base-dev cmake build-essential`
 
@@ -58,7 +58,7 @@ Jeśli chcesz tylko korzystać z kalkulatora (bez instalowania środowiska progr
 
 ### 🪟 Windows (2 opcja, z użyciem środowiska Qt)
 
-1. Pobierz kod z GitHuba. (np. używając git clone)
+1. Pobierz kod z GitHuba. (np. używając `git clone`)
 2. Pobierz i zainstaluj **Qt Creator** (Open Source).
 3. Wybierz opcję **"Otwórz projekt"** i wskaż plik `CMakeLists.txt` z tego folderu.
 4. Kliknij zielony trójkąt (Run).
