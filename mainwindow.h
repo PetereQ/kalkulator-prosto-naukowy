@@ -84,8 +84,6 @@ private slots:
 
     void on_open_brac_clicked();
 
-    // Custom Functions:
-
     void on_func_1_clicked();
 
     void on_func_2_clicked();
@@ -94,6 +92,12 @@ private slots:
 
 
 private:
+ QString calculate(const QString &input);
+    void handleSqrtButton();
+    void handleRootButton();
+    
     Ui::MainWindow *ui;
+    StrCalc* m_calculator;
 };
-#endif // MAINWINDOW_H
+
+#endif

@@ -1,5 +1,17 @@
 #ifndef STRCALC_H
 #define STRCALC_H
 #include <QString>
-QString calculate(const QString &input);
-#endif // STRCALC_H
+#include "mathparser.h"
+
+class StrCalc {
+public:
+    StrCalc();
+    ~StrCalc();
+    QString calculate(const QString &input);
+    void setAngleModeDegrees(bool degrees);
+    QString lastError() const;
+private:
+    MathParser m_parser;
+};
+
+#endif

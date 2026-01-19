@@ -2,33 +2,34 @@
 #include "./ui_mainwindow.h"
 #include "strcalc.h"
 #include <QShortcut>
+#include <QJSEngine>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , m_calculator(new StrCalc())
 {
     ui->setupUi(this);
     ui->inputBox->setReadOnly(true);
 
-    // Obsługa kropki (.) jako drugiego skrótu dla przecinka
     QShortcut *dotShortcut = new QShortcut(QKeySequence("."), this);
     connect(dotShortcut, &QShortcut::activated, ui->commaButton, &QPushButton::animateClick);
 
-    // Obsługa entera z klawiatury numerycznej jako drugiego skrótu dla =
     QShortcut *returnShortcut = new QShortcut(QKeySequence(Qt::Key_Return), this);
     connect(returnShortcut, &QShortcut::activated, ui->equalsButton, &QPushButton::animateClick);
 
-    // Obsługa entera z klawiatury numerycznej jako drugiego skrótu dla =
-    QShortcut *enterShortcut = new QShortcut(QKeySequence(Qt::Key_Enter), this);
-    connect(enterShortcut, &QShortcut::activated, ui->equalsButton, &QPushButton::animateClick);
-
-    // Obsługa backspace z klawiatur jako drugiego skrótu dla delete
     QShortcut *backspaceShortcut = new QShortcut(QKeySequence(Qt::Key_Backspace), this);
     connect(backspaceShortcut, &QShortcut::activated, ui->deleteButton, &QPushButton::animateClick);
 }
 
+class MainWindowPrivate {
+public:
+    StrCalc calculator;
+};
+
 MainWindow::~MainWindow()
 {
+    delete m_calculator;
     delete ui;
 }
 
@@ -94,10 +95,6 @@ void MainWindow::on_lnButton_clicked()
     ui->inputBox->insert("ln(");
 }
 
-void MainWindow::on_sqrtButton_clicked()
-{
-    ui->inputBox->insert("√");
-}
 
 void MainWindow::on_squareButton_clicked()
 {
@@ -111,8 +108,10 @@ void MainWindow::on_powerButton_clicked()
 
 void MainWindow::on_rootButton_clicked()
 {
-    // to nie wiem jak zrobić aby dobrze wygladalo i dzialalo
-    ui->inputBox->insert("pierwsiatek stopnia a z b?"); // moze a√b?, bo jakby bylo a razy √b to by bylo a*√b, wiec sie nie pomyli
+    ui->inputBox->insert("root(");
+    QToolTip::showText(ui->rootButton->mapToGlobal(QPoint(0, -20)),
+                      "root(stopień, liczba)\nPrzykład: root(3,8) dla ∛8",
+                      ui->rootButton);
 }
 
 void MainWindow::on_percentButton_clicked()
@@ -146,23 +145,49 @@ void MainWindow::on_func_3_clicked()
     ui->inputBox->insert("fun3(");
 }
 
+QString MainWindow::calculate(const QString &input) {
+    if (input.isEmpty()) {
+        return "";
+    }
+    if (m_calculator) {
+        QString result = m_calculator->calculate(input);
+        return result;
+    }
+    QJSEngine engine;
+    QString expr = input;
+    
+    void MainWindow::on_sqrtButton_clicked()
+{
+    ui->inputBox->insert("sqrt(");
+}
+    expr.replace("^", "**");
+    if (expr.contains("sin") || expr.contains("cos") || 
+        expr.contains("tan") || expr.contains("ctg") ||
+        expr.contains("log") || expr.contains("ln") ||
+        expr.contains("sqrt") || expr.contains("root")) {
+        return "Uzyj pelnego parsera (wlaczony)";
+    }
+    
+    QJSValue result = engine.evaluate(expr);
+    if (result.isError()) {
+        return "Blad: " + result.toString();
+    }
+    return result.toString();
+}
+
+
 void MainWindow::on_binButton_clicked()
 {
-    // 1. Pobierz tekst z pola wpisywania
     QString input = ui->inputBox->text();
 
     bool ok;
-    // 2. Spróbuj zamienić tekst na liczbę całkowitą (LongLong mieści duże liczby)
     qlonglong number = input.toLongLong(&ok);
 
     if (ok) {
-        // 3. Jeśli się udało, zamień liczbę na system binarny (baza 2)
         QString binary = QString::number(number, 2);
-
-        // 4. Wyświetl wynik w polu wyniku
         ui->resultBox->setText(binary);
     } else {
-        ui->resultBox->setText("Błąd: Wpisz jedną liczbę całkowitą");
+        ui->resultBox->setText("Blad: Wpisz jedna liczbe calkowita");
     }
 }
 void MainWindow::on_clearButton_clicked()
@@ -171,7 +196,6 @@ void MainWindow::on_clearButton_clicked()
     ui->resultBox->clear();
 }
 
-// --- CYFERKI ---
 
 void MainWindow::on_zeroButton_clicked() { ui->inputBox->insert("0"); }
 void MainWindow::on_oneButton_clicked() { ui->inputBox->insert("1"); }
@@ -192,16 +216,12 @@ void MainWindow::on_commaButton_clicked()
 
 void MainWindow::on_equalsButton_clicked()
 {
-    //ustaw wynik jako wejście
     ui->inputBox->setText(ui->resultBox->text());
 }
 
 void MainWindow::on_deleteButton_clicked()
 {
-    // 1. Pobierz tekst
     QString text = ui->inputBox->text();
-
-    // 2. Jeśli tekst nie jest pusty, utnij ostatni znak
     if (!text.isEmpty()) {
         text.chop(1);
         ui->inputBox->setText(text);
