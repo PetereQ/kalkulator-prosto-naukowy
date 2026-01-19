@@ -21,5 +21,4 @@ QString calculate(const QString &input) {
     else
         out_str = error_code_to_message[code];
     return out_str;
-
 }

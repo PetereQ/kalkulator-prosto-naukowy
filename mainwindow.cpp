@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "input.h"
 #include "strcalc.h"
 #include <QShortcut>
 
@@ -133,7 +134,15 @@ void MainWindow::on_close_brac_clicked()
 
 void MainWindow::on_func_1_clicked()
 {
-    ui->inputBox->insert("fun1(");
+    // if funkcja w pliku istnieje:
+    //ui->inputBox->insert("fun1(");
+    // else
+    Input *nw = new Input;
+    nw->show();
+    if() {
+        nw->close();
+    }
+
 }
 
 void MainWindow::on_func_2_clicked()
