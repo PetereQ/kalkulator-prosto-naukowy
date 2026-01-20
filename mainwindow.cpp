@@ -2,7 +2,6 @@
 #include "./ui_mainwindow.h"
 #include "strcalc.h"
 #include <QShortcut>
-#include <QJSEngine>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
