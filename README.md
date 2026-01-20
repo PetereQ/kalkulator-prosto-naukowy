@@ -17,7 +17,7 @@ Aplikacja to nowoczesny kalkulator graficzny łączący prostotę obsługi (tryb
 - **Barttomiej Kuźma 361997** -
 - **Alicja Wiercioch 360189** -
 - **Julia Garboś 353775** -
-- **Anna Yatsyshyna 263058** -
+- **Anna Yatsyshyna 263058** - Sprawdzenie kolejności i poprawności wykonywania działań
 - **Adam Raczyński 359082** -
 
 ## 📦 Jak uruchomić projekt?
