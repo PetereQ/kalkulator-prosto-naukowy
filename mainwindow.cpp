@@ -194,7 +194,29 @@ void MainWindow::on_func_2_clicked()
 
 void MainWindow::on_func_3_clicked()
 {
-    ui->inputBox->insert("fun3(");
+    QFile file("Fun3.txt");
+    bool functionExists = false;
+
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream in(&file);
+        QString content = in.readAll();
+        if (content.contains("="))
+        {
+            functionExists = true;
+        }
+        file.close();
+    }
+    if (functionExists)
+    {
+        ui->inputBox->insert("fun3(");
+    }
+    else
+    {
+        F = 3;
+        Input *nw = new Input(this);
+        nw->show();
+    }
 }
 
 void MainWindow::on_binButton_clicked()
