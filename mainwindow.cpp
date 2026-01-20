@@ -3,6 +3,7 @@
 #include "input.h"
 #include "strcalc.h"
 #include <QShortcut>
+#include <Windows.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -139,10 +140,10 @@ void MainWindow::on_func_1_clicked()
     // else
     Input *nw = new Input;
     nw->show();
-    if() {
-        nw->close();
-    }
-
+    bool czyzamknac = 1;
+    // if(czyzamknac) {
+    //     nw->close();
+    // }
 }
 
 void MainWindow::on_func_2_clicked()

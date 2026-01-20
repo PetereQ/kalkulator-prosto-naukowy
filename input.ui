@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>218</height>
+    <width>392</width>
+    <height>232</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -109,6 +109,9 @@
     <font>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="text">
+    <string>Fun1(Q) = Q+1</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">

@@ -19,8 +19,8 @@ public:
 private slots:
     void on_input_input(const QString &arg1);
 
-    void on_ok_input();
-    void on_cancel_input();
+    void on_ok_input_clicked();
+    void on_cancel_input_clicked();
 
 
 private:
