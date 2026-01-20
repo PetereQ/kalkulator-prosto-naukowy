@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->inputBox->setReadOnly(true);
-
+    this->output_state = EMPTY;
     // Obsługa kropki (.) jako drugiego skrótu dla przecinka
     QShortcut *dotShortcut = new QShortcut(QKeySequence("."), this);
     connect(dotShortcut, &QShortcut::activated, ui->commaButton, &QPushButton::animateClick);
@@ -34,7 +34,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_inputBox_textChanged(const QString &arg1)
 {
-    ui->resultBox->setText(calculate(arg1));
+    ui->resultBox->setText(calculate(arg1, this->output_state));
 }
 
 
@@ -156,12 +156,14 @@ void MainWindow::on_binButton_clicked()
     qlonglong number = input.toLongLong(&ok);
 
     if (ok) {
+        output_state = BINARY;
         // 3. Jeśli się udało, zamień liczbę na system binarny (baza 2)
         QString binary = QString::number(number, 2);
 
         // 4. Wyświetl wynik w polu wyniku
         ui->resultBox->setText(binary);
     } else {
+        this->output_state = ERROR;
         ui->resultBox->setText("Błąd: Wpisz jedną liczbę całkowitą");
     }
 }
@@ -192,8 +194,20 @@ void MainWindow::on_commaButton_clicked()
 
 void MainWindow::on_equalsButton_clicked()
 {
-    //ustaw wynik jako wejście
-    ui->inputBox->setText(ui->resultBox->text());
+    if(this->output_state == RESULT) {
+        double result;
+        //oblicz wynik
+        validate_and_eval(ui->inputBox->text().toStdString().c_str(), &result);
+        std::string res_str = std::to_string(result);
+        int i;
+        //utnij zera z końca
+        if(res_str.find(".") != std::string::npos) {
+            for(i= res_str.size()-1; i>0 && (res_str[i] == '0' || res_str[i] == '.'); i--) {}
+            res_str.resize(i+1);
+        }
+        //ustaw wynik jako wejście
+        ui->inputBox->setText(QString::fromStdString(res_str));
+    }
 }
 
 void MainWindow::on_deleteButton_clicked()

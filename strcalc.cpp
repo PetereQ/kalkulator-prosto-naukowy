@@ -2,6 +2,7 @@
 #include "evaluate_result.h"
 #include <map>
 #include <QString>
+#include "mainwindow.h"
 std::map<ErrorCode, QString> error_code_to_message = {
     {ERR_SYNTAX, "To nie jest poprawne wyrażenie"},
     {ERR_DIV_ZERO, "Dzielenie przez 0"},
@@ -12,14 +13,22 @@ std::map<ErrorCode, QString> error_code_to_message = {
     {ERR_TOO_LONG, "Zbyt dlugie wyrażenie"}
 };
 
-QString calculate(const QString &input) {
+QString calculate(const QString &input, OutputState &error) {
+    if(input.size() == 0) {
+        error = EMPTY;
+        return "";
+    }
     double result;
-    QString out_str = "Test";
+    QString out_str;
     ErrorCode code = validate_and_eval(input.toStdString().c_str(), &result);
-    if(code==ERR_NONE)
-        out_str = QString::number(result);
-    else
+    if(code==ERR_NONE) {
+        error = RESULT;
+        out_str = QString::number(result, 'g', 9);
+    }
+    else {
+        error = ERROR;
         out_str = error_code_to_message[code];
+    }
     return out_str;
 
 }
