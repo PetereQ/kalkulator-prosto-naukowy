@@ -531,7 +531,7 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
          <string>ln</string>
         </property>
         <property name="shortcut">
-         <string>Shift+I</string>
+         <string>Shift+L</string>
         </property>
        </widget>
       </item>
