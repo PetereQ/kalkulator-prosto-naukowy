@@ -176,6 +176,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
       <property name="readOnly">
        <bool>true</bool>
       </property>
+      <property name="is_error" stdset="0">
+       <bool>false</bool>
+      </property>
      </widget>
     </item>
     <item>
@@ -396,6 +399,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         <property name="text">
          <string>tan</string>
         </property>
+        <property name="shortcut">
+         <string>T</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="6">
@@ -442,6 +448,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         </property>
         <property name="text">
          <string>cos</string>
+        </property>
+        <property name="shortcut">
+         <string>C</string>
         </property>
        </widget>
       </item>
@@ -521,6 +530,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         <property name="text">
          <string>ln</string>
         </property>
+        <property name="shortcut">
+         <string>Shift+I</string>
+        </property>
        </widget>
       </item>
       <item row="3" column="3">
@@ -542,6 +554,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         </property>
         <property name="text">
          <string>log</string>
+        </property>
+        <property name="shortcut">
+         <string>L</string>
         </property>
        </widget>
       </item>
@@ -592,6 +607,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         </property>
         <property name="text">
          <string>BIN</string>
+        </property>
+        <property name="shortcut">
+         <string>Shift+B</string>
         </property>
        </widget>
       </item>
@@ -699,6 +717,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         <property name="text">
          <string>x²</string>
         </property>
+        <property name="shortcut">
+         <string>P</string>
+        </property>
        </widget>
       </item>
       <item row="4" column="6">
@@ -720,6 +741,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         </property>
         <property name="text">
          <string>ctg</string>
+        </property>
+        <property name="shortcut">
+         <string>Shift+T</string>
         </property>
        </widget>
       </item>
@@ -770,6 +794,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         </property>
         <property name="text">
          <string>sin</string>
+        </property>
+        <property name="shortcut">
+         <string>S</string>
         </property>
        </widget>
       </item>
@@ -930,6 +957,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         <property name="text">
          <string>√</string>
         </property>
+        <property name="shortcut">
+         <string>Shift+S</string>
+        </property>
        </widget>
       </item>
       <item row="2" column="4">
@@ -996,6 +1026,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         <property name="text">
          <string>Func 1</string>
         </property>
+        <property name="shortcut">
+         <string>F1</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="3">
@@ -1007,6 +1040,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
          </sizepolicy>
         </property>
         <property name="text">
+         <string>(</string>
+        </property>
+        <property name="shortcut">
          <string>(</string>
         </property>
        </widget>
@@ -1022,6 +1058,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         <property name="text">
          <string>)</string>
         </property>
+        <property name="shortcut">
+         <string>)</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="1">
@@ -1034,6 +1073,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         </property>
         <property name="text">
          <string>Func 2</string>
+        </property>
+        <property name="shortcut">
+         <string>F2</string>
         </property>
        </widget>
       </item>
@@ -1048,6 +1090,9 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
         <property name="text">
          <string>Func 3</string>
         </property>
+        <property name="shortcut">
+         <string>F3</string>
+        </property>
        </widget>
       </item>
      </layout>
@@ -1060,7 +1105,7 @@ QPushButton#deleteButton:pressed, QPushButton#clearButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
