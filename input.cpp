@@ -4,10 +4,10 @@
 #include <QTextStream>
 #include <QMessageBox>
 
-
-Input::Input(QWidget *parent)
+Input::Input(int fValue, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Input)
+    , F(fValue)
 {
     ui->setupUi(this);
 }
@@ -19,7 +19,24 @@ Input::~Input()
 
 void Input::on_ok_input_clicked()
 {
-    QFile file("Fun1.txt");
+    QString filename = "";
+    switch (F)
+    {
+    case 1:
+        filename = "Fun1.txt";
+        break;
+    case 2:
+        filename = "Fun2.txt";
+        break;
+    case 3:
+        filename = "Fun3.txt";
+        break;
+    default:
+        qDebug() << "Zly rodzaj funkcji, zmiennej F";
+        break;
+    }
+
+    QFile file(filename);
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
     {

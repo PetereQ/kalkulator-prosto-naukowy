@@ -137,7 +137,6 @@ void MainWindow::on_close_brac_clicked()
     ui->inputBox->insert(")");
 }
 
-
 void MainWindow::on_func_1_clicked()
 {
     QFile file("Fun1.txt");
@@ -160,7 +159,7 @@ void MainWindow::on_func_1_clicked()
     else
     {
         F = 1;
-        Input *nw = new Input(this);
+        Input *nw = new Input(F, this);
         nw->show();
     }
 }
@@ -187,7 +186,7 @@ void MainWindow::on_func_2_clicked()
     else
     {
         F = 2;
-        Input *nw = new Input(this);
+        Input *nw = new Input(F, this);
         nw->show();
     }
 }
@@ -214,7 +213,7 @@ void MainWindow::on_func_3_clicked()
     else
     {
         F = 3;
-        Input *nw = new Input(this);
+        Input *nw = new Input(F, this);
         nw->show();
     }
 }

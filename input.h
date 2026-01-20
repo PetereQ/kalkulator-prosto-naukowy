@@ -13,7 +13,7 @@ class Input : public QDialog
     Q_OBJECT
 
 public:
-    explicit Input(QWidget *parent = nullptr);
+    explicit Input(int fValue, QWidget *parent = nullptr);
     ~Input();
 
 private slots:
@@ -24,6 +24,7 @@ private slots:
 private:
     Ui::Input *ui;
     QString inputText;
+    int F;
 };
 
 #endif // INPUT_H
