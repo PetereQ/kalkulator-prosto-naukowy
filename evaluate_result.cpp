@@ -12,17 +12,7 @@
 #include <ctype.h>
 #include <math.h>
 #include <errno.h>
-
-typedef enum {
-    ERR_NONE,
-    ERR_SYNTAX,
-    ERR_DIV_ZERO,
-    ERR_NEG_ROOT,
-    ERR_PAREN,
-    ERR_RANGE,
-    ERR_OVERFLOW,
-    ERR_TOO_LONG
-} ErrorCode;
+#include "evaluate_result.h"
 
 typedef enum {
     TOK_NUM,
@@ -226,7 +216,7 @@ double parse_power(){
         next_token();
         double rhs = parse_power();
         if(v==0 && rhs==0){ error=ERR_RANGE; return 0.0; }
-        if(v<0 && fabs(rhs-round(rhs))>1e-9){ error=ERR_RANGE; return 0.0; }
+        if(v<0 && (fabs(rhs-round(rhs)) > 1e-9)){ error=ERR_RANGE; return 0.0; }
         v = pow(v, rhs);
         if(check_overflow(v)) return 0.0;
     }
@@ -280,13 +270,13 @@ double parse_expr(){
     return v;
 }
 
-int validate_and_eval(const char* expr,double* result){
+ErrorCode validate_and_eval(const char* expr,double* result){
     input=expr;
     pos=0;
     error=ERR_NONE;
     next_token();
     *result=parse_expr();
     if(current.type!=TOK_END) error=ERR_SYNTAX;
-    return error==ERR_NONE;
+    return error;
 } 
 
