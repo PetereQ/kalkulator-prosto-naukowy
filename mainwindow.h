@@ -95,5 +95,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    int F;
 };
 #endif // MAINWINDOW_H

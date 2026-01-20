@@ -19,18 +19,16 @@ Input::~Input()
 
 void Input::on_ok_input_clicked()
 {
-    QFile file("Functions.txt");
+    QFile file("Fun1.txt");
 
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
     {
-        qDebug() << "Nie znaleziono pliku";
+        qDebug() << "Blad z otwarciem pliku";
         return;
     }
-
     QTextStream out(&file);
     out << inputText << "\n";
 
-    qDebug() << inputText;
     file.close();
     this->accept();
 }

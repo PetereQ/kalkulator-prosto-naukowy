@@ -4,6 +4,11 @@
 #include "strcalc.h"
 #include <QShortcut>
 #include <Windows.h>
+#include <qevent.h>
+#include <qimage.h>
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -135,18 +140,56 @@ void MainWindow::on_close_brac_clicked()
 
 void MainWindow::on_func_1_clicked()
 {
-    // if funkcja w pliku istnieje:
-    //ui->inputBox->insert("fun1(");
-    // else
-    Input *nw = new Input;
-    nw->show();
+    QFile file("Fun1.txt");
+    bool functionExists = false;
 
-
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream in(&file);
+        QString content = in.readAll();
+        if (content.contains("="))
+        {
+            functionExists = true;
+        }
+        file.close();
+    }
+    if (functionExists)
+    {
+        ui->inputBox->insert("fun1(");
+    }
+    else
+    {
+        F = 1;
+        Input *nw = new Input(this);
+        nw->show();
+    }
 }
 
 void MainWindow::on_func_2_clicked()
 {
-    ui->inputBox->insert("fun2(");
+    QFile file("Fun2.txt");
+    bool functionExists = false;
+
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream in(&file);
+        QString content = in.readAll();
+        if (content.contains("="))
+        {
+            functionExists = true;
+        }
+        file.close();
+    }
+    if (functionExists)
+    {
+        ui->inputBox->insert("fun2(");
+    }
+    else
+    {
+        F = 2;
+        Input *nw = new Input(this);
+        nw->show();
+    }
 }
 
 void MainWindow::on_func_3_clicked()
