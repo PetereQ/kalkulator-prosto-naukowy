@@ -37,13 +37,10 @@ void Input::on_ok_input_clicked()
 void Input::on_cancel_input_clicked()
 {
     this->reject();
-
 }
 
 void Input::on_input_input_textChanged(const QString &arg1)
 {
     inputText = arg1;
-
-    //qDebug() << inputText;
 }
 
