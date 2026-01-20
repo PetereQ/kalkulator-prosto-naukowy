@@ -1,10 +1,9 @@
 #include "input.h"
 #include "ui_input.h"
-#include <qevent.h>
 #include <QFile>
 #include <QTextStream>
-#include <QStringList>
-#include <Windows.h>
+#include <QMessageBox>
+
 
 Input::Input(QWidget *parent)
     : QDialog(parent)
@@ -20,41 +19,33 @@ Input::~Input()
 
 void Input::on_ok_input_clicked()
 {
-    // QString inputText = ui->input_input->text();
-    // QFile file("Functions.txt");
-    // QStringList lines;
+    QFile file("Functions.txt");
 
-    // if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text))
-    // {
-    //     QTextStream in(&file);
-    //     while (!in.atEnd())
-    //         lines.append(in.readLine());
-    //     file.close();
-    // }
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
+    {
+        qDebug() << "Nie znaleziono pliku";
+        return;
+    }
 
-    // // while (lines.size() < 2)
-    // //     lines.append("");
+    QTextStream out(&file);
+    out << inputText << "\n";
 
-    // lines[1] = inputText;
-
-    // if (file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
-    // {
-    //     QTextStream out(&file);
-    //     for (const QString &line : lines)
-    //         out << line << "\n";
-    //     file.close();
-    // }
-    Input::~Input();
+    qDebug() << inputText;
+    file.close();
+    this->accept();
 }
+
 
 void Input::on_cancel_input_clicked()
 {
-    Input::~Input();
-    this->close();
+    this->reject();
 
 }
 
-void Input::on_input_input(const QString &arg1)
+void Input::on_input_input_textChanged(const QString &arg1)
 {
-    // obsługa wpisanego tekstu
+    inputText = arg1;
+
+    //qDebug() << inputText;
 }
+

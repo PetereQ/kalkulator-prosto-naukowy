@@ -36,7 +36,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         evaluate_result.h
 
         input.h input.cpp input.ui
-        Functions.txt
+
+
 
 
 
