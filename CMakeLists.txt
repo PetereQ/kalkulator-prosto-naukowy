@@ -29,9 +29,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(kalculator
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        evaluate_result.cpp
         strcalc.h strcalc.cpp
         resources.qrc
         logo.rc
+        evaluate_result.h
 
     )
 # Define target properties for Android with Qt 6 as:
