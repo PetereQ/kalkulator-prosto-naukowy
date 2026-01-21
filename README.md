@@ -13,12 +13,12 @@ Aplikacja to nowoczesny kalkulator graficzny łączący prostotę obsługi (tryb
 
 ## 👥 Zespół
 
-- **Piotr Kościelny 354663** - Frontend, UI, Logika interfejsu
-- **Barttomiej Kuźma 361997** -
-- **Alicja Wiercioch 360189** -
+- **Piotr Kościelny 354663** - Frontend, UI, Logika interfejsu, projekt ikony aplikacji oraz zapewnienie kompatybilności z systemami Linux i Windows
+- **Barttomiej Kuźma 361997** - Bugfixy przy funkcjach
+- **Alicja Wiercioch 360189** - UI i UX oraz architektura Funkcji programowalnych
 - **Julia Garboś 353775** -
 - **Anna Yatsyshyna 263058** -
-- **Adam Raczyński 359082** -
+- **Adam Raczyński 359082** - Integracja logiki obliczeń z UI, Architektura projektu, UX, Bugfixy w całym projekcie
 
 ## 📦 Jak uruchomić projekt?
 
@@ -91,10 +91,25 @@ Aplikacja jest w pełni obsługiwana z klawiatury fizycznej:
 | Klawisz                   | Akcja                                      |
 | :------------------------ | :----------------------------------------- |
 | `0-9`, `+`, `-`, `*`, `/` | Wprowadzanie cyfr i znaków działań         |
+| `(`, `)`                  | Wprowadanie nawiasowania                   |
 | `Enter`                   | Oblicz wynik (`=`)                         |
 | `Backspace`               | Usuń ostatni znak (`DEL`)                  |
 | `Esc`                     | Wyczyść wszystko (`C`)                     |
 | `.` (kropka)              | Wstawia przecinek (działa zamiennie z `,`) |
+| `^`                       | Potęgowanie                                |
+| `P`                       | Podnoszenie do kwadratu                    |
+| `S`                       | Sinus                                      |
+| `C`                       | Cosinus                                    |
+| `T`                       | Tangens                                    |
+| `Shift+T`                 | Cotangens                                  |
+| `^`                       | Potęgowanie                                |
+| `Shift+L`                 | Logarytm naturalny                         |
+| `L`                       | Logarytm                                   |
+| `Shift+B`                 | Zamiana na system binarny                  |
+| `Shift+S`                 | Pierwiastek kwadratowy                     |
+| `F1`                      | Funkcja 1                                  |
+| `F2`                      | Funkcja 2                                  |
+| `F3`                      | Funkcja 3                                  |
 | `^`                       | Potęgowanie                                |
 
 ## 🛠️ Technologie

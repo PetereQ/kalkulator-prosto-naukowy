@@ -35,6 +35,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         logo.rc
         evaluate_result.h
 
+        input.h input.cpp input.ui
+
+
+
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET kalculator APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

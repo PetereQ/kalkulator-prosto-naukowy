@@ -9,11 +9,18 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+typedef enum {
+    EMPTY,
+    RESULT,
+    ERROR,
+    BINARY
+} OutputState;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+    OutputState output_state;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -92,8 +99,10 @@ private slots:
 
     void on_func_3_clicked();
 
-
 private:
+    void handleFunction(int funcNumber, const QString &fileName, const QString &insertText);
+
     Ui::MainWindow *ui;
+    int F;
 };
 #endif // MAINWINDOW_H
