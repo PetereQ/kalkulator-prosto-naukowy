@@ -9,11 +9,18 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+typedef enum {
+    EMPTY,
+    RESULT,
+    ERROR,
+    BINARY
+} OutputState;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+    OutputState output_state;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
