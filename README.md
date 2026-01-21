@@ -18,7 +18,7 @@ Aplikacja to nowoczesny kalkulator graficzny łączący prostotę obsługi (tryb
 - **Alicja Wiercioch 360189** -
 - **Julia Garboś 353775** -
 - **Anna Yatsyshyna 263058** -
-- **Adam Raczyński 359082** -
+- **Adam Raczyński 359082** - Integracja logiki obliczen z UI, architektura projektu, UX, bugfixy w calym projekcie
 
 ## 📦 Jak uruchomić projekt?
 
@@ -91,12 +91,26 @@ Aplikacja jest w pełni obsługiwana z klawiatury fizycznej:
 | Klawisz                   | Akcja                                      |
 | :------------------------ | :----------------------------------------- |
 | `0-9`, `+`, `-`, `*`, `/` | Wprowadzanie cyfr i znaków działań         |
+| `(`, `)`                  | Wprowadanie nawiasowania                   |
 | `Enter`                   | Oblicz wynik (`=`)                         |
 | `Backspace`               | Usuń ostatni znak (`DEL`)                  |
 | `Esc`                     | Wyczyść wszystko (`C`)                     |
 | `.` (kropka)              | Wstawia przecinek (działa zamiennie z `,`) |
 | `^`                       | Potęgowanie                                |
-
+| `P`                       | Podnoszenie do kwadratu                    |
+| `S`                       | Sinus                                      |
+| `C`                       | Cosinus                                    |
+| `T`                       | Tangens                                    |
+| `Shift+T`                 | Cotangens                                  |
+| `^`                       | Potęgowanie                                |
+| `Shift+L`                 | Logarytm naturalny                         |
+| `L`                       | Logarytm                                   |
+| `Shift+B`                 | Zamiana na system binarny                  |
+| `Shift+S`                 | Pierwiastek kwadratowy                     |
+| `F1`                      | Funkcja 1                                  |
+| `F2`                      | Funkcja 2                                  |
+| `F3`                      | Funkcja 3                                  |
+| `^`                       | Potęgowanie                                |
 ## 🛠️ Technologie
 
 - **Język:** C++17

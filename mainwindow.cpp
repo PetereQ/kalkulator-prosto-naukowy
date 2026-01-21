@@ -1,7 +1,14 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "input.h"
 #include "strcalc.h"
 #include <QShortcut>
+#include <Windows.h>
+#include <qevent.h>
+#include <qimage.h>
+#include <QFile>
+#include <QTextStream>
+#include <QMessageBox>
 #include <QKeyEvent>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -132,21 +139,61 @@ void MainWindow::on_close_brac_clicked()
     ui->inputBox->insert(")");
 }
 
+void MainWindow::handleFunction(int funcNumber, const QString &fileName, const QString &insertText)
+{
+    QFile file(fileName);
+    QString content;
+
+    // próba odczytu pliku
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream in(&file);
+        content = in.readAll();
+        file.close();
+    }
+
+    if (content.contains("="))
+    {
+        // jeśli plik zawiera "="
+        ui->inputBox->insert(insertText);
+    }
+    else if (!content.isEmpty())
+    {
+        // jeśli plik nie zawiera "=", ale nie jest pusty
+        ui->inputBox->insert(insertText);
+
+        F = funcNumber;
+        Input *nw = new Input(F, this);
+
+        // ustawiamy zawartość pliku w polu input_input
+        nw->setInputText(content);
+
+        nw->show();
+    }
+    else
+    {
+        // plik pusty
+        F = funcNumber;
+        Input *nw = new Input(F, this);
+        nw->show();
+    }
+}
 
 void MainWindow::on_func_1_clicked()
 {
-    ui->inputBox->insert("fun1(");
+    handleFunction(1, "Fun1.txt", "fun1(");
 }
 
 void MainWindow::on_func_2_clicked()
 {
-    ui->inputBox->insert("fun2(");
+    handleFunction(2, "Fun2.txt", "fun2(");
 }
 
 void MainWindow::on_func_3_clicked()
 {
-    ui->inputBox->insert("fun3(");
+    handleFunction(3, "Fun3.txt", "fun3(");
 }
+
 
 void MainWindow::on_binButton_clicked()
 {
