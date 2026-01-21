@@ -241,7 +241,8 @@ double parse_term(){
             v /= rhs;
         }
         else {
-            if(fabs(rhs - round(rhs)) > 1e-9 || fabs(v - round(v)) > 1e-9){
+            //if(fabs(rhs - round(rhs)) > 1e-9 || fabs(v - round(v)) > 1e-9){
+            if (fabs(rhs) < 1e-12) { //teraz dziala na ułamki
                 error = ERR_SYNTAX;
                 return 0.0;
             }
