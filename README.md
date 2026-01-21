@@ -14,7 +14,7 @@ Aplikacja to nowoczesny kalkulator graficzny łączący prostotę obsługi (tryb
 ## 👥 Zespół
 
 - **Piotr Kościelny 354663** - Frontend, UI, Logika interfejsu
-- **Barttomiej Kuźma 361997** -
+- **Barttomiej Kuźma 361997** - Bugfixy przy funkcjach
 - **Alicja Wiercioch 360189** -
 - **Julia Garboś 353775** -
 - **Anna Yatsyshyna 263058** -

@@ -125,8 +125,8 @@ double parse_factor() {
         double rad = deg_to_rad(arg);
         if(func==TOK_SIN) return sin(rad);
         if(func==TOK_COS) return cos(rad);
-        if(func==TOK_TAN){ if(is_half_pi_plus_kpi(rad)){ error=ERR_RANGE; return 0.0; } return tan(rad); }
-        if(func==TOK_CTG){ if(is_kpi(rad)){ error=ERR_RANGE; return 0.0; } return cos(rad)/sin(rad); }
+        if(func==TOK_TAN){ if(is_half_pi_plus_kpi(rad)){ error=ERR_EXIST; return 0.0; } return tan(rad); }
+        if(func==TOK_CTG){ if(is_kpi(rad)){ error=ERR_EXIST; return 0.0; } return cos(rad)/sin(rad); }
     }
     if(current.type==TOK_LN){
         next_token();

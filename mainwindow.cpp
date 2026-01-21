@@ -96,7 +96,7 @@ void MainWindow::on_lnButton_clicked()
 
 void MainWindow::on_sqrtButton_clicked()
 {
-    ui->inputBox->insert("√");
+    ui->inputBox->insert("sqrt(");
 }
 
 void MainWindow::on_squareButton_clicked()
