@@ -104,5 +104,9 @@ private:
 
     Ui::MainWindow *ui;
     int F;
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+
 };
 #endif // MAINWINDOW_H

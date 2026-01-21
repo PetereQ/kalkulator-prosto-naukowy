@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QKeyEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -267,5 +268,17 @@ void MainWindow::on_deleteButton_clicked()
     {
         text.chop(1);
         ui->inputBox->setText(text);
+    }
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Left) {
+        ui->inputBox->cursorBackward(false);
+        ui->inputBox->setFocus();
+    }
+    else if (event->key() == Qt::Key_Right) {
+        ui->inputBox->cursorForward(false);
+        ui->inputBox->setFocus();
     }
 }
