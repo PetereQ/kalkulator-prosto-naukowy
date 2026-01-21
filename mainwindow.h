@@ -99,8 +99,10 @@ private slots:
 
     void on_func_3_clicked();
 
-
 private:
+    void handleFunction(int funcNumber, const QString &fileName, const QString &insertText);
+
     Ui::MainWindow *ui;
+    int F;
 };
 #endif // MAINWINDOW_H
