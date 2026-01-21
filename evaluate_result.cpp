@@ -280,13 +280,3 @@ ErrorCode validate_and_eval(const char* expr,double* result){
     if(current.type!=TOK_END) error=ERR_SYNTAX;
     return error;
 } 
-
-void check_function(const char* func) {
-    double result;
-    ErrorCode e = validate_and_eval(func, &result);
-    if(e == ERR_NONE) {
-        std::cout << "Function is valid. Result = " << result << "\n";
-    } else {
-        std::cout << "Function is invalid. Code not changed.\n";
-    }
- }
