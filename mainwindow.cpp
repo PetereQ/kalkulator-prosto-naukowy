@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "strcalc.h"
 #include <QShortcut>
+#include <QKeyEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -220,5 +221,17 @@ void MainWindow::on_deleteButton_clicked()
     if (!text.isEmpty()) {
         text.chop(1);
         ui->inputBox->setText(text);
+    }
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Left) {
+        ui->inputBox->cursorBackward(false);
+        ui->inputBox->setFocus();
+    }
+    else if (event->key() == Qt::Key_Right) {
+        ui->inputBox->cursorForward(false);
+        ui->inputBox->setFocus();
     }
 }
