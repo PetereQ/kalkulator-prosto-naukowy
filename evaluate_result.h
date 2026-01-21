@@ -8,7 +8,8 @@ typedef enum {
     ERR_PAREN,
     ERR_RANGE,
     ERR_OVERFLOW,
-    ERR_TOO_LONG
+    ERR_TOO_LONG,
+    ERR_EXIST
 } ErrorCode;
 ErrorCode validate_and_eval(const char* expr,double* result);
 
