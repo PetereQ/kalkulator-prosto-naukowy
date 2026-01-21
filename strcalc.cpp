@@ -10,7 +10,8 @@ std::map<ErrorCode, QString> error_code_to_message = {
     {ERR_PAREN, "Niepoprawne nawiasowanie"},
     {ERR_RANGE, "Zbyt duza liczba"},
     {ERR_OVERFLOW, "Zbyt duza liczba"},
-    {ERR_TOO_LONG, "Zbyt dlugie wyrażenie"}
+    {ERR_TOO_LONG, "Zbyt dlugie wyrażenie"},
+    {ERR_EXIST, "Nie istnieje"} //Dodalem nowy blad dla tangensa i cotangensa, dla przejrzystosci
 };
 
 QString calculate(const QString &input, OutputState &error) {
