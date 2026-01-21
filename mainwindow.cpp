@@ -3,7 +3,6 @@
 #include "input.h"
 #include "strcalc.h"
 #include <QShortcut>
-#include <Windows.h>
 #include <qevent.h>
 #include <qimage.h>
 #include <QFile>

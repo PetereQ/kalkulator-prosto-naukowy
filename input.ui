@@ -132,7 +132,7 @@
     </font>
    </property>
    <property name="text">
-    <string>ok</string>
+    <string>Ok</string>
    </property>
   </widget>
   <widget class="QPushButton" name="cancel_input">
@@ -145,7 +145,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>anuluj</string>
+    <string>Anuluj</string>
    </property>
   </widget>
  </widget>

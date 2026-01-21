@@ -13,12 +13,12 @@ Aplikacja to nowoczesny kalkulator graficzny łączący prostotę obsługi (tryb
 
 ## 👥 Zespół
 
-- **Piotr Kościelny 354663** - Frontend, UI, Logika interfejsu
+- **Piotr Kościelny 354663** - Frontend, UI, Logika interfejsu, projekt ikony aplikacji oraz zapewnienie kompatybilności z systemami Linux i Windows
 - **Barttomiej Kuźma 361997** -
 - **Alicja Wiercioch 360189** -
 - **Julia Garboś 353775** -
 - **Anna Yatsyshyna 263058** -
-- **Adam Raczyński 359082** - Integracja logiki obliczen z UI, architektura projektu, UX, bugfixy w calym projekcie
+- **Adam Raczyński 359082** - Integracja logiki obliczeń z UI, Architektura projektu, UX, Bugfixy w całym projekcie
 
 ## 📦 Jak uruchomić projekt?
 
@@ -111,6 +111,7 @@ Aplikacja jest w pełni obsługiwana z klawiatury fizycznej:
 | `F2`                      | Funkcja 2                                  |
 | `F3`                      | Funkcja 3                                  |
 | `^`                       | Potęgowanie                                |
+
 ## 🛠️ Technologie
 
 - **Język:** C++17
