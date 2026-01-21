@@ -201,7 +201,8 @@ double parse_factor() {
         if(current.type!=TOK_RPAREN){ error=ERR_PAREN; return 0.0; }
         next_token();
         if((int)degree%2==0 && value<0){ error=ERR_NEG_ROOT; return 0.0; }
-        return pow(value,1.0/degree);
+        if(value == 0 && degree != 0) return 0.0;
+        return pow(value, 1.0/degree);
     }
 
     error=ERR_SYNTAX;
@@ -279,4 +280,3 @@ ErrorCode validate_and_eval(const char* expr,double* result){
     if(current.type!=TOK_END) error=ERR_SYNTAX;
     return error;
 } 
-
