@@ -92,25 +92,25 @@ Aplikacja jest w pełni obsługiwana z klawiatury fizycznej:
 | :------------------------ | :----------------------------------------- |
 | `0-9`, `+`, `-`, `*`, `/` | Wprowadzanie cyfr i znaków działań         |
 | `(`, `)`                  | Wprowadanie nawiasowania                   |
-| `Enter`                   | Oblicz wynik (`=`)                         |
-| `Backspace`               | Usuń ostatni znak (`DEL`)                  |
+| `Enter` , `=`             | Oblicz wynik (`=`)                         |
+| `Backspace`, `Delete`     | Usuń ostatni znak (`DEL`)                  |
 | `Esc`                     | Wyczyść wszystko (`C`)                     |
 | `.` (kropka)              | Wstawia przecinek (działa zamiennie z `,`) |
 | `^`                       | Potęgowanie                                |
 | `P`                       | Podnoszenie do kwadratu                    |
+| `%`                       | Reszta z dzielenia                         |
 | `S`                       | Sinus                                      |
 | `C`                       | Cosinus                                    |
 | `T`                       | Tangens                                    |
 | `Shift+T`                 | Cotangens                                  |
-| `^`                       | Potęgowanie                                |
 | `Shift+L`                 | Logarytm naturalny                         |
 | `L`                       | Logarytm                                   |
 | `Shift+B`                 | Zamiana na system binarny                  |
 | `Shift+S`                 | Pierwiastek kwadratowy                     |
+| `R`                       | Pierwsiatek n-tego stopnia                 |
 | `F1`                      | Funkcja 1                                  |
 | `F2`                      | Funkcja 2                                  |
 | `F3`                      | Funkcja 3                                  |
-| `^`                       | Potęgowanie                                |
 
 ## 🛠️ Technologie
 

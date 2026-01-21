@@ -9,28 +9,20 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QKeyEvent>
+#include <QRegularExpressionValidator>
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->inputBox->setReadOnly(true);
+    ui->inputBox->setReadOnly(false);
+    ui->inputBox->setFocus();
+    ui->inputBox->installEventFilter(this);
+
+
     this->output_state = EMPTY;
-    // Obsługa kropki (.) jako drugiego skrótu dla przecinka
-    QShortcut *dotShortcut = new QShortcut(QKeySequence("."), this);
-    connect(dotShortcut, &QShortcut::activated, ui->commaButton, &QPushButton::animateClick);
 
-    // Obsługa entera z klawiatury numerycznej jako drugiego skrótu dla =
-    QShortcut *returnShortcut = new QShortcut(QKeySequence(Qt::Key_Return), this);
-    connect(returnShortcut, &QShortcut::activated, ui->equalsButton, &QPushButton::animateClick);
-
-    // Obsługa entera z klawiatury numerycznej jako drugiego skrótu dla =
-    QShortcut *enterShortcut = new QShortcut(QKeySequence(Qt::Key_Enter), this);
-    connect(enterShortcut, &QShortcut::activated, ui->equalsButton, &QPushButton::animateClick);
-
-    // Obsługa backspace z klawiatur jako drugiego skrótu dla delete
-    QShortcut *backspaceShortcut = new QShortcut(QKeySequence(Qt::Key_Backspace), this);
-    connect(backspaceShortcut, &QShortcut::activated, ui->deleteButton, &QPushButton::animateClick);
 }
 
 MainWindow::~MainWindow()
@@ -260,25 +252,113 @@ void MainWindow::on_equalsButton_clicked()
 
 void MainWindow::on_deleteButton_clicked()
 {
-    // 1. Pobierz tekst
-    QString text = ui->inputBox->text();
-
-    // 2. Jeśli tekst nie jest pusty, utnij ostatni znak
-    if (!text.isEmpty())
-    {
-        text.chop(1);
-        ui->inputBox->setText(text);
-    }
+    ui->inputBox->setFocus();
+    ui->inputBox->backspace();
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *event)
+
+bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
-    if (event->key() == Qt::Key_Left) {
-        ui->inputBox->cursorBackward(false);
-        ui->inputBox->setFocus();
+    if (watched == ui->inputBox && event->type() == QEvent::KeyPress) {
+        QKeyEvent *k = static_cast<QKeyEvent*>(event);
+        int key = k->key();
+        Qt::KeyboardModifiers mod = k->modifiers();
+
+        if (key == Qt::Key_Left || key == Qt::Key_Right ||
+            key == Qt::Key_Home || key == Qt::Key_End) {
+            return false;
+        }
+
+        QPushButton *btn = nullptr;
+
+        if (key == Qt::Key_0) btn = ui->zeroButton;
+        else if (key == Qt::Key_1) btn = ui->oneButton;
+        else if (key == Qt::Key_2) btn = ui->twoButton;
+        else if (key == Qt::Key_3) btn = ui->threeButton;
+        else if (key == Qt::Key_4) btn = ui->fourButton;
+        else if (key == Qt::Key_5) btn = ui->fiveButton;
+        else if (key == Qt::Key_6) btn = ui->sixButton;
+        else if (key == Qt::Key_7) btn = ui->sevenButton;
+        else if (key == Qt::Key_8) btn = ui->eightButton;
+        else if (key == Qt::Key_9) btn = ui->nineButton;
+
+        else if (key == Qt::Key_Plus) btn = ui->addButton;
+        else if (key == Qt::Key_Minus) btn = ui->substractButton;
+        else if (key == Qt::Key_Asterisk || key == Qt::Key_X) btn = ui->multiplicateButton; // * lub x
+        else if (key == Qt::Key_Slash) btn = ui->divideButton;
+        else if (key == Qt::Key_Percent) btn = ui->percentButton;
+
+        else if (key == Qt::Key_ParenLeft) btn = ui->open_brac;
+        else if (key == Qt::Key_ParenRight) btn = ui->close_brac;
+
+        else if (key == Qt::Key_Return || key == Qt::Key_Enter || key == Qt::Key_Equal) btn = ui->equalsButton;
+
+        else if (key == Qt::Key_Backspace) btn = ui->deleteButton;
+        else if (key == Qt::Key_Delete) btn = ui->deleteButton;
+        else if (key == Qt::Key_Escape) btn = ui->clearButton;
+
+        else if (key == Qt::Key_Period || key == Qt::Key_Comma) btn = ui->commaButton;
+
+        // P -> Kwadrat (^2)
+        else if (key == Qt::Key_P) {
+            btn = ui->squareButton;
+        }
+
+        // ^ -> Potęgowanie (Shift+6 lub sam daszek)
+        else if (key == Qt::Key_AsciiCircum || (key == Qt::Key_6 && (mod & Qt::ShiftModifier))) {
+            btn = ui->powerButton;
+        }
+
+        // R -> Piewiastek n-tego stopnia
+        else if (key == Qt::Key_R) {
+            btn = ui->rootButton;
+        }
+
+
+        // S -> Sinus / Sqrt
+        else if (key == Qt::Key_S) {
+            if (mod & Qt::ShiftModifier) btn = ui->sqrtButton; // Shift+S -> Pierwiastek
+            else btn = ui->sinButton;                          // S -> Sinus
+        }
+
+        // T -> Tangens / Cotangens
+        else if (key == Qt::Key_T) {
+            if (mod & Qt::ShiftModifier) btn = ui->ctgButton;  // Shift+T -> Cotangens
+            else btn = ui->tanButton;                          // T -> Tangens
+        }
+
+        // C -> Cosinus
+        else if (key == Qt::Key_C) {
+            btn = ui->cosButton;
+        }
+
+        // L -> Logarytmy
+        else if (key == Qt::Key_L) {
+            if (mod & Qt::ShiftModifier) btn = ui->lnButton;   // Shift+L -> Naturalny
+            else btn = ui->logButton;                          // L -> Dziesiętny
+        }
+
+        // B -> Binarny
+        else if (key == Qt::Key_B && (mod & Qt::ShiftModifier)) {
+            btn = ui->binButton;
+        }
+
+        // F1, F2, F3
+        else if (key == Qt::Key_F1) btn = ui->func_1;
+        else if (key == Qt::Key_F2) btn = ui->func_2;
+        else if (key == Qt::Key_F3) btn = ui->func_3; // (Upewnij się, że masz ten przycisk w .ui!)
+
+
+        if (btn != nullptr) {
+            btn->animateClick();
+            return true;
+        }
+
+        if (k->matches(QKeySequence::Copy)) return false;
+
+        return true;
     }
-    else if (event->key() == Qt::Key_Right) {
-        ui->inputBox->cursorForward(false);
-        ui->inputBox->setFocus();
-    }
+
+
+    return QMainWindow::eventFilter(watched, event);
 }

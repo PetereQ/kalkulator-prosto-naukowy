@@ -106,7 +106,7 @@ private:
     int F;
 
 protected:
-    void keyPressEvent(QKeyEvent *event) override;
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 };
 #endif // MAINWINDOW_H
