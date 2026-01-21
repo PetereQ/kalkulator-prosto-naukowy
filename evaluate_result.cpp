@@ -1,3 +1,4 @@
+#include <qdebug.h>
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -12,6 +13,9 @@
 #include <math.h>
 #include <errno.h>
 #include "evaluate_result.h"
+#include <QString>
+#include <QFile>
+#include <QTextStream>
 
 typedef enum {
     TOK_NUM,
@@ -21,13 +25,16 @@ typedef enum {
     TOK_SIN, TOK_COS, TOK_TAN, TOK_CTG,
     TOK_LN, TOK_LOG,
     TOK_PI, TOK_E,
+    TOK_FUN,          // custom funkcje
     TOK_END
 } TokenType;
+
 
 typedef struct {
     TokenType type;
     double value;
     int pos;
+    int funIndex;   // <<< 1,2,3 dla Fun1/Fun2/Fun3
 } Token;
 
 const char* input;
@@ -42,6 +49,51 @@ double parse_term();
 int is_half_pi_plus_kpi(double x);
 int is_kpi(double x);
 double deg_to_rad(double deg) { return deg*M_PI/180.0; }
+
+
+// NA RAZIE zakładamy, że F jest tutaj
+int F = 1;
+
+ErrorCode evaluateFun(double Qvalue, double* result)
+{
+    QString fileName;
+
+    qDebug() << "Jetsesmu w evaluateFun";
+
+    // wybór pliku na podstawie F
+    switch (F) {
+    case 1: fileName = "Fun1.txt"; break;
+    case 2: fileName = "Fun2.txt"; break;
+    case 3: fileName = "Fun3.txt"; break;
+    default:
+        qDebug() << "co nie tak z pliokiem";
+    }
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return ERR_SYNTAX; // błąd pliku
+
+    QTextStream in(&file);
+    QString expr = in.readLine().trimmed(); // TYLKO JEDNA LINIA
+    file.close();
+
+    // usuń '=' jeśli istnieje
+    if (expr.startsWith('='))
+        expr.remove(0, 1);
+
+    // podstaw Q (z nawiasami!)
+    QString qStr = "(" + QString::number(Qvalue, 'g', 15) + ")";
+    expr.replace("Q", qStr, Qt::CaseSensitive);
+
+    // konwersja do C-string
+    QByteArray bytes = expr.toLatin1();
+    const char* c_expr = bytes.constData();
+
+    // obliczenie
+    qDebug() << c_expr;
+    return validate_and_eval(c_expr, result);
+}
+
 
 int is_half_pi_plus_kpi(double x) {
     double k = (x - M_PI/2)/M_PI;
@@ -62,6 +114,7 @@ int check_overflow(double v) {
 }
 
 void next_token() {
+    qDebug() << "next token";
     while(isspace(input[pos])) pos++;
     if(strlen(&input[pos]) > 45){ 
         error=ERR_TOO_LONG; 
@@ -70,6 +123,15 @@ void next_token() {
     current.pos = pos;
     char c = input[pos];
     if(c=='\0'){ current.type=TOK_END; return; }
+    if (!strncmp(&input[pos], "Fun", 3) && isdigit(input[pos + 3])) {
+        int idx = input[pos + 3] - '0';
+        if (idx >= 1 && idx <= 3) {
+            pos += 4; // FunX
+            current.type = TOK_FUN;
+            current.funIndex = idx;
+            return;
+        }
+    }
 
     if(!strncmp(&input[pos],"sin",3)){ pos+=3; current.type=TOK_SIN; return; }
     if(!strncmp(&input[pos],"cos",3)){ pos+=3; current.type=TOK_COS; return; }
@@ -113,8 +175,39 @@ double parse_factor() {
         next_token();
         return -parse_factor();
     }
+     if (current.type == TOK_FUN) {
+         int savedF = F;              // zapamiętaj poprzednie F
+         F = current.funIndex;        // ustaw Fun1 / Fun2 / Fun3
+
+         next_token();
+         if (current.type != TOK_LPAREN) {
+             error = ERR_SYNTAX;
+             return 0.0;
+         }
+
+         next_token();
+         double Qvalue = parse_expr();   // argument funkcji
+         if (current.type != TOK_RPAREN) {
+             error = ERR_PAREN;
+             return 0.0;
+         }
+         next_token();
+
+         double funResult = 0.0;
+         ErrorCode err = evaluateFun(Qvalue, &funResult);
+         F = savedF; // przywróć F
+
+         if (err != ERR_NONE) {
+             error = err;
+             return 0.0;
+         }
+
+         return funResult;
+     }
+
     if(current.type==TOK_SIN || current.type==TOK_COS || current.type==TOK_TAN || current.type==TOK_CTG){
         TokenType func=current.type;
+        qDebug() << "jestesmy w sinusie";
         next_token();
         if(current.type!=TOK_LPAREN){ error=ERR_SYNTAX; return 0.0; }
         next_token();
