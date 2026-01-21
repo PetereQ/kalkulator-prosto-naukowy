@@ -10,8 +10,7 @@
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->inputBox->setReadOnly(true);
@@ -43,12 +42,10 @@ void MainWindow::on_inputBox_textChanged(const QString &arg1)
     ui->resultBox->setText(calculate(arg1, this->output_state));
 }
 
-
 void MainWindow::on_addButton_clicked()
 {
     ui->inputBox->insert("+");
 }
-
 
 void MainWindow::on_substractButton_clicked()
 {
@@ -56,13 +53,11 @@ void MainWindow::on_substractButton_clicked()
     ui->inputBox->insert("-");
 }
 
-
 void MainWindow::on_divideButton_clicked()
 {
 
     ui->inputBox->insert("/");
 }
-
 
 void MainWindow::on_multiplicateButton_clicked()
 {
@@ -102,7 +97,7 @@ void MainWindow::on_lnButton_clicked()
 
 void MainWindow::on_sqrtButton_clicked()
 {
-    ui->inputBox->insert("√");
+    ui->inputBox->insert("sqrt(");
 }
 
 void MainWindow::on_squareButton_clicked()
@@ -118,7 +113,8 @@ void MainWindow::on_powerButton_clicked()
 void MainWindow::on_rootButton_clicked()
 {
     // to nie wiem jak zrobić aby dobrze wygladalo i dzialalo
-    ui->inputBox->insert("pierwsiatek stopnia a z b?"); // moze a√b(x,y)?, bo jakby bylo a razy √b to by bylo a*√b, wiec sie nie pomyli
+    ui->inputBox->insert("root(,"); // moze a√b?, bo jakby bylo a razy √b to by bylo a*√b, wiec sie nie pomyli
+    // trzeba by bylo dodac przycisk przecinka ale na ogol działa
 }
 
 void MainWindow::on_percentButton_clicked()
@@ -191,7 +187,6 @@ void MainWindow::on_func_3_clicked()
     handleFunction(3, "Fun3.txt", "fun3(");
 }
 
-
 void MainWindow::on_binButton_clicked()
 {
     // 1. Pobierz tekst z pola wpisywania
@@ -201,14 +196,17 @@ void MainWindow::on_binButton_clicked()
     // 2. Spróbuj zamienić tekst na liczbę całkowitą (LongLong mieści duże liczby)
     qlonglong number = input.toLongLong(&ok);
 
-    if (ok) {
+    if (ok)
+    {
         output_state = BINARY;
         // 3. Jeśli się udało, zamień liczbę na system binarny (baza 2)
         QString binary = QString::number(number, 2);
 
         // 4. Wyświetl wynik w polu wyniku
         ui->resultBox->setText(binary);
-    } else {
+    }
+    else
+    {
         this->output_state = ERROR;
         ui->resultBox->setText("Błąd: Wpisz jedną liczbę całkowitą");
     }
@@ -232,7 +230,6 @@ void MainWindow::on_sevenButton_clicked() { ui->inputBox->insert("7"); }
 void MainWindow::on_eightButton_clicked() { ui->inputBox->insert("8"); }
 void MainWindow::on_nineButton_clicked() { ui->inputBox->insert("9"); }
 
-
 void MainWindow::on_commaButton_clicked()
 {
     ui->inputBox->insert(".");
@@ -240,18 +237,22 @@ void MainWindow::on_commaButton_clicked()
 
 void MainWindow::on_equalsButton_clicked()
 {
-    if(this->output_state == RESULT) {
+    if (this->output_state == RESULT)
+    {
         double result;
-        //oblicz wynik
+        // oblicz wynik
         validate_and_eval(ui->inputBox->text().toStdString().c_str(), &result);
         std::string res_str = std::to_string(result);
         int i;
-        //utnij zera z końca
-        if(res_str.find(".") != std::string::npos) {
-            for(i= res_str.size()-1; i>0 && (res_str[i] == '0' || res_str[i] == '.'); i--) {}
-            res_str.resize(i+1);
+        // utnij zera z końca
+        if (res_str.find(".") != std::string::npos)
+        {
+            for (i = res_str.size() - 1; i > 0 && (res_str[i] == '0' || res_str[i] == '.'); i--)
+            {
+            }
+            res_str.resize(i + 1);
         }
-        //ustaw wynik jako wejście
+        // ustaw wynik jako wejście
         ui->inputBox->setText(QString::fromStdString(res_str));
     }
 }
@@ -262,7 +263,8 @@ void MainWindow::on_deleteButton_clicked()
     QString text = ui->inputBox->text();
 
     // 2. Jeśli tekst nie jest pusty, utnij ostatni znak
-    if (!text.isEmpty()) {
+    if (!text.isEmpty())
+    {
         text.chop(1);
         ui->inputBox->setText(text);
     }

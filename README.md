@@ -16,6 +16,9 @@ Aplikacja to nowoczesny kalkulator graficzny łączący prostotę obsługi (tryb
 - **Piotr Kościelny 354663** - Frontend, UI, Logika interfejsu, projekt ikony aplikacji oraz zapewnienie kompatybilności z systemami Linux i Windows
 - **Barttomiej Kuźma 361997** -
 - **Alicja Wiercioch 360189** -
+- **Piotr Kościelny 354663** - Frontend, UI, Logika interfejsu
+- **Barttomiej Kuźma 361997** - Bugfixy przy funkcjach
+- **Alicja Wiercioch 360189** - UI i UX oraz architektura Funkcji programowalnych
 - **Julia Garboś 353775** -
 - **Anna Yatsyshyna 263058** -
 - **Adam Raczyński 359082** - Integracja logiki obliczeń z UI, Architektura projektu, UX, Bugfixy w całym projekcie
