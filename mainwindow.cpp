@@ -137,86 +137,54 @@ void MainWindow::on_close_brac_clicked()
     ui->inputBox->insert(")");
 }
 
-void MainWindow::on_func_1_clicked()
+void MainWindow::handleFunction(int funcNumber, const QString &fileName, const QString &insertText)
 {
-    QFile file("Fun1.txt");
-    bool functionExists = false;
+    QFile file(fileName);
+    QString content;
 
+    // próba odczytu pliku
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         QTextStream in(&file);
-        QString content = in.readAll();
-        if (content.contains("="))
-        {
-            functionExists = true;
-        }
+        content = in.readAll();
         file.close();
     }
-    if (functionExists)
+    // jeśli w pliku jest "=", wstawiamy do inputBox
+    if (content.contains("="))
     {
-        ui->inputBox->insert("fun1(");
+        ui->inputBox->insert(insertText);
     }
-    else
+    // jeśli plik nie zawiera "=" ale nie jest pusty
+    else if (!content.isEmpty())
     {
-        F = 1;
+        ui->inputBox->insert(insertText);
+        F = funcNumber;
         Input *nw = new Input(F, this);
         nw->show();
     }
+    // jeśli plik pusty
+    else
+    {
+        F = funcNumber;
+        Input *nw = new Input(F, this);
+        nw->show();
+    }
+}
+void MainWindow::on_func_1_clicked()
+{
+    handleFunction(1, "Fun1.txt", "fun1(");
 }
 
 void MainWindow::on_func_2_clicked()
 {
-    QFile file("Fun2.txt");
-    bool functionExists = false;
-
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        QTextStream in(&file);
-        QString content = in.readAll();
-        if (content.contains("="))
-        {
-            functionExists = true;
-        }
-        file.close();
-    }
-    if (functionExists)
-    {
-        ui->inputBox->insert("fun2(");
-    }
-    else
-    {
-        F = 2;
-        Input *nw = new Input(F, this);
-        nw->show();
-    }
+    handleFunction(2, "Fun2.txt", "fun2(");
 }
 
 void MainWindow::on_func_3_clicked()
 {
-    QFile file("Fun3.txt");
-    bool functionExists = false;
-
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        QTextStream in(&file);
-        QString content = in.readAll();
-        if (content.contains("="))
-        {
-            functionExists = true;
-        }
-        file.close();
-    }
-    if (functionExists)
-    {
-        ui->inputBox->insert("fun3(");
-    }
-    else
-    {
-        F = 3;
-        Input *nw = new Input(F, this);
-        nw->show();
-    }
+    handleFunction(3, "Fun3.txt", "fun3(");
 }
+
 
 void MainWindow::on_binButton_clicked()
 {

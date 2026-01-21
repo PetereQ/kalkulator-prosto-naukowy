@@ -20,6 +20,7 @@ Input::~Input()
 void Input::on_ok_input_clicked()
 {
     QString filename = "";
+    //wybor odpowiedniego pliku docelowego
     switch (F)
     {
     case 1:
@@ -43,6 +44,7 @@ void Input::on_ok_input_clicked()
         qDebug() << "Blad z otwarciem pliku";
         return;
     }
+    //zapisanie funkcji do pliku
     QTextStream out(&file);
     out << inputText << "\n";
 
@@ -58,6 +60,7 @@ void Input::on_cancel_input_clicked()
 
 void Input::on_input_input_textChanged(const QString &arg1)
 {
+    //przekazanie wartosci z input_input
     inputText = arg1;
 }
 
