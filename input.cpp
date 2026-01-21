@@ -58,6 +58,12 @@ void Input::on_cancel_input_clicked()
     this->reject();
 }
 
+void Input::setInputText(const QString &text)
+{
+    ui->input_input->setText(text);
+}
+
+
 void Input::on_input_input_textChanged(const QString &arg1)
 {
     //przekazanie wartosci z input_input

@@ -149,27 +149,34 @@ void MainWindow::handleFunction(int funcNumber, const QString &fileName, const Q
         content = in.readAll();
         file.close();
     }
-    // jeśli w pliku jest "=", wstawiamy do inputBox
+
     if (content.contains("="))
     {
+        // jeśli plik zawiera "="
         ui->inputBox->insert(insertText);
     }
-    // jeśli plik nie zawiera "=" ale nie jest pusty
     else if (!content.isEmpty())
     {
+        // jeśli plik nie zawiera "=", ale nie jest pusty
         ui->inputBox->insert(insertText);
+
         F = funcNumber;
         Input *nw = new Input(F, this);
+
+        // ustawiamy zawartość pliku w polu input_input
+        nw->setInputText(content);
+
         nw->show();
     }
-    // jeśli plik pusty
     else
     {
+        // plik pusty
         F = funcNumber;
         Input *nw = new Input(F, this);
         nw->show();
     }
 }
+
 void MainWindow::on_func_1_clicked()
 {
     handleFunction(1, "Fun1.txt", "fun1(");

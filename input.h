@@ -13,6 +13,7 @@ class Input : public QDialog
     Q_OBJECT
 
 public:
+    void setInputText(const QString &text); // setter do pola input_input
     explicit Input(int fValue, QWidget *parent = nullptr);
     ~Input();
 
